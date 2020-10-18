@@ -1,0 +1,1329 @@
+CREATE PROFILE Profile_Default limit
+sessions_per_user 1
+connect_time 1440
+idle_time 180
+failed_login_attempts 3
+password_life_time 30;
+
+CREATE USER LiveBuzz_SyS_Admin
+IDENTIFIED BY livebuzzsysadmin
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp;
+
+CREATE USER Security_Admin
+IDENTIFIED BY livebuzzsystem1
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp;
+
+CREATE USER LiveBuzz_Sales
+IDENTIFIED BY livebuzzsales
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp;
+
+CREATE USER LiveBuzz_Customer_Service
+IDENTIFIED BY livebuzzcustomerservice
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp;
+
+CREATE USER LiveBuzz_Event_Manager
+IDENTIFIED BY livebuzzeventmanager
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp;
+
+CREATE USER LiveBuzz_Accountant
+IDENTIFIED BY livebuzzaccountant
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp;
+
+CREATE USER LiveBuzz_Admin
+IDENTIFIED BY livebuzzadmin
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp;
+
+CREATE VIEW Contact_Detail_View as
+SELECT Contact_Detail_ID,
+Title,
+First_Name,
+Middle_Name,
+Last_Name,
+Job_Title,
+Sex,
+Language,
+Company,
+Nationality,
+Biography,
+Primary_Mobile_Number,
+Primary_Email
+FROM Contact_Detail
+
+CREATE VIEW Order_View as
+SELECT Customer_Order_ID
+Order_Date,
+Order_Status,
+Currency,
+Total_Order_Value,
+Vat_Exempt,
+Subtotal_Vat
+FROM Customer_Order;
+
+ 
+CREATE ROLE Database_Admin
+IDENTIFIED BY databaseadmin;
+GRANT DBA TO Database_Admin;
+GRANT CREATE SESSION To Database_Admin;
+GRANT Database_Admin TO LiveBuzz_Admin;
+GRANT Profile_Default to security_admin;
+
+CREATE ROLE SafetyMan
+IDENTIFIED BY securityadmin;
+GRANT CREATE PROFILE, CREATE SESSION, ALTER PROFILE, DROP PROFILE,
+    CREATE ROLE, DROP ANY ROLE, GRANT ANY ROLE, AUDIT ANY,
+    AUDIT SYSTEM, CREATE USER, BECOME USER, ALTER USER, DROP USER
+    TO SafetyMan WITH ADMIN OPTION;
+	
+CREATE ROLE Sales_Role
+IDENTIFIED BY salesrole;
+GRANT CREATE SESSION to Sales_Role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON LEAD to Sales_Role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON CUSTOMER_ORDER to Sales_Role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Order_Line to Sales_Role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Lead to Sales_Role;
+GRANT ALL on Contact_Detail_View to Sales_Role;
+
+CREATE ROLE HelpMan
+IDENTIFIED BY customerservice;
+GRANT CREATE SESSION TO HelpMan;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Contact_Detail to HelpMan;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Registration to HelpMan;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Registration_Status to HelpMan;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Address to HelpMan;
+GRANT All on Order_View to HelpMan;
+
+CREATE ROLE Event_Manager
+IDENTIFIED BY eventmanager;
+GRANT CREATE SESSION TO Event_Manager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Customer_Order to Event_Manager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Event to Event_Manager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Stream to Event_Manager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Order_Line to Event_Manager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Delegate to Event_Manager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Exhibitor to Event_Manager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Speaker to Event_Manager;
+GRANT ALL ON Contact_Detail_View to Event_Manager;
+
+
+Grant Event_Manager to LiveBuzz_Event_Manager;
+Grant Sales_Role to LiveBuzz_Sales;
+Grant SafetyMan to Security_Admin;
+Grant Database_Admin to LiveBuzz_SyS_Admin;
+Grant HelpMan to LiveBuzz_Customer_Service;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Settings
+
+Set lines 256
+Set trimout on
+Set tab off
+alter session set nls_date_format = 'hh:mi dd-mm-yyyy';
+alter session set "_ORACLE_SCRIPT"=true; 
+#column "column name" format a(Number#)
+
+# Create tables
+
+select min(PARTITION_NAME),max(PARTITION_NAME) from dba_segments
+
+CREATE USER Administrator
+IDENTIFIED BY adminpassword
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp;
+
+CREATE USER DatabaseStructure
+IDENTIFIED BY databasestructure
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp;
+
+GRANT CREATE SESSION to DatabaseStructure
+
+GRANT CREATE TABLE to DatabaseStructure;
+GRANT ALTER TABLE to DatabaseStructure;
+
+
+
+
+
+
+
+GRANT CREATE SESSION to System_Admin
+
+
+CREATE TABLESPACE tbs1
+	DATAFILE 'tbs1_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs2
+	DATAFILE 'tbs2_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs3
+	DATAFILE 'tbs3_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs4
+	DATAFILE 'tbs4_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+
+CREATE TABLESPACE tbs5
+	DATAFILE 'tbs5_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs6
+	DATAFILE 'tbs6_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs7
+	DATAFILE 'tbs7_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs8
+	DATAFILE 'tbs8_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs9
+	DATAFILE 'tbs9_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs10
+	DATAFILE 'tbs10_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs11
+	DATAFILE 'tbs11_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs12
+	DATAFILE 'tbs12_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs13
+	DATAFILE 'tbs13_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs14
+	DATAFILE 'tbs14_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs15
+	DATAFILE 'tbs15_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+	
+CREATE TABLESPACE tbs16
+	DATAFILE 'tbs16_data.dbf'
+	SIZE 10m
+	AUTOEXTEND ON;
+
+	
+CREATE CLUSTER Event_Management
+(Cl1 NUMBER(15));
+
+CREATE INDEX Event_Management_Index
+ON CLUSTER Event_Management;
+
+
+
+
+CREATE TABLE Contact_Detail
+	(
+	Contact_Detail_ID	 		NUMBER(15) CONSTRAINT Contact_pk PRIMARY KEY,
+	Custom_Status_ID	 		NUMBER(15),
+	Title			 			VARCHAR(15),
+	First_Name			 		VARCHAR(15) NOT NULL,
+	Middle_Name		 			VARCHAR(15),
+	Last_Name		 			VARCHAR(25) NOT NULL,
+	Job_Title		 			VARCHAR(50),
+	Sex				 			CHAR(1) CONSTRAINT Sex_ck CHECK (Sex = 'M' or Sex = 'F' or Sex = 'O'),
+	Language		 			CHAR(25) NOT NULL,
+	Company			 			VARCHAR(25) NOT NULL,
+	Nationality			 		VARCHAR(25),
+	Biography		 			VARCHAR(500),
+	Primary_Mobile_Number	 	NUMBER(11) UNIQUE NOT NULL,
+	Primary_Email		 		VARCHAR(40) UNIQUE NOT NULL,
+	Created_atat			 		DATE DEFAULT SYSDATE NOT NULL,
+	Updated_at		 			DATE DEFAULT SYSDATE NOT NULL)
+	Partition by range (Last_Name)
+	(
+	partition Below_E values less than ('E') TABLESPACE tbs1,
+	partition Below_M values less than ('M') TABLESPACE tbs2,
+	partition Below_S values less than ('S') TABLESPACE tbs3,
+	partition Below_MAX values less than (MAXVALUE) TABLESPACE tbs4
+	);
+	
+CREATE INDEX Contact_Detail_Index ON Contact_Detail(Custom_Status_ID,First_Name,Last_Name , Company , Primary_Mobile_Number , Primary_Email);
+	
+CREATE TABLE Custom_Status
+	(
+	Custom_Status_ID 	NUMBER(15) CONSTRAINT CustomStatus_pk PRIMARY KEY,
+	Visa_Type	 		VARCHAR(10) NOT NULL,
+	Visa_Colour	 		VARCHAR(6),
+	Visa_Status	 		VARCHAR(8) NOT NULL CONSTRAINT Visa_ck CHECK (Visa_Status = 'Approved' OR Visa_Status = 'Pending' OR Visa_Status = 'Denied')
+	);
+
+CREATE TABLE Lead 
+	(
+	Lead_ID			 	NUMBER(15) CONSTRAINT Lead_pk PRIMARY KEY,
+	Sales_Manager_ID 	NUMBER(15), 
+	Contact_Detail_ID 	NUMBER(15),  
+	Lead_Status		    VARCHAR(6) NOT NULL CONSTRAINT Lead_Stat_ck CHECK (Lead_Status = 'Closed' OR Lead_Status = 'Active' OR Lead_Status = 'NULL'),
+	Company_Sector  	VARCHAR(15) NOT NULL,
+	Detail			 	VARCHAR (500)
+	);
+	
+CREATE INDEX Lead_Index ON Lead(Sales_Manager_ID, Contact_Detail_ID);
+
+CREATE TABLE Sales_Manager
+	(
+	Sales_Manager_ID	 	NUMBER(15) CONSTRAINT SalesManager_pk PRIMARY KEY,
+	Contact_Detail_ID	 	NUMBER(15),
+	Managed_Customer_Count 	NUMBER(2) NOT NULL CONSTRAINT Managed_Customer_Count_ck CHECK (Managed_Customer_Count<10),
+	Manages_Events		 	CHAR(1) NOT NULL CONSTRAINT ManagesEvent_ck CHECK (Manages_Events = 'Y' or Manages_Events = 'N')
+	);
+	
+CREATE INDEX Sales_Manager_Index ON Sales_Manager(Contact_Detail_ID);
+
+CREATE TABLE Customer_Order
+	(
+	Customer_Order_ID 	NUMBER(15) CONSTRAINT Customer_Order_pk PRIMARY KEY,
+	Sales_Manager_ID 	NUMBER(15),
+	Contact_Detail_ID 	NUMBER(15),
+	Order_Date	 		DATE NOT NULL, 
+	Order_Status        VARCHAR(12) NOT NULL CONSTRAINT OrderStatus_ck CHECK (Order_Status = 'Complete' OR Order_Status = 'In-Progress' OR Order_Status = 'Processing' OR Order_Status = 'Placed'), 
+	Currency	 	 	VARCHAR(3) CONSTRAINT Currency_ck CHECK (Currency = '£' OR Currency = '$' OR Currency = '€'),
+	Total_Order_Value 	NUMBER(5) NOT NULL,
+	Vat_Exempt		 	CHAR(1) NOT NULL CONSTRAINT VAT_ck CHECK (Vat_Exempt = 'Y' or Vat_Exempt = 'N'),
+	Subtotal_Vat	 	NUMBER(5) NOT NULL)
+	Partition by range (Order_Date)
+	(
+	partition Order_delete values less than (to_date('01/01/2013','DD/MM/YYYY'))TABLESPACE tbs5,
+	partition Order_older values less than (to_date('01/01/2015','DD/MM/YYYY'))TABLESPACE tbs6,
+	partition Order_old values less than (to_date('06/01/2017','DD/MM/YYYY'))TABLESPACE tbs7,
+	partition Order_present values less than (to_date('06/01/2020','DD/MM/YYYY'))TABLESPACE tbs8)
+	Enable Row Movement;
+	
+CREATE INDEX Customer_Order_Index ON Customer_Order(Sales_Manager_ID + Contact_Detail_ID + Order_Date + Total_Order_Value + Subtotal_Vat);
+	
+CREATE TABLE Order_Line
+	(
+	Order_Line_ID	 	NUMBER(15) CONSTRAINT OrderLine_pk PRIMARY KEY,
+	Customer_Order_ID 	NUMBER(15),
+	Event_ID		 	NUMBER(15),
+	Event_Type	 		VARCHAR(20)  NOT NULL CONSTRAINT Event_ck CHECK (Event_Type = 'Corporate' or Event_Type = 'Exhibition' or Event_Type = 'Seminar' or Event_Type = 'Conference' or Event_Type = 'Demonstration'),
+	Unit_Cost	 		NUMBER(10) NOT NULL)
+	CLUSTER Event_Management(Order_Line_ID);
+	
+CREATE INDEX Order_Line_Index ON Order_Line(Customer_Order_ID + Event_ID + Unit_Cost);
+	
+CREATE TABLE Event
+	(
+	Event_ID	 NUMBER(15) CONSTRAINT Event_pk PRIMARY KEY,
+	Address_ID   NUMBER(15), 
+	Event_Time_Date DATE NOT NULL)
+	CLUSTER Event_Management(Event_ID);
+	
+CREATE INDEX Event_Index ON Event(Address_ID, Event_Time_Date);
+	
+CREATE TABLE Stream
+	(
+	Stream_ID  		NUMBER(15) CONSTRAINT Stream_pk PRIMARY KEY, 
+	Event_ID   		NUMBER(15),
+	Name	   		VARCHAR(50),
+	Origin_Url   	VARCHAR(300),
+	Secret		 	CHAR(1) CONSTRAINT Secret_ck CHECK (Secret = 'Y' OR Secret = 'N'),
+	Audience	 	VARCHAR(50) NOT NULL,
+	Provider	 	VARCHAR(15) NOT NULL,
+	Created_at	 	DATE DEFAULT SYSDATE NOT NULL,
+	Updated_at   	DATE DEFAULT SYSDATE NOT NULL,
+	Run_Scheduler  	VARCHAR(50),
+	Settings 		VARCHAR(500),
+	Theme	 		VARCHAR(100)
+	)
+	CLUSTER Event_Management(Stream_ID);
+
+	
+CREATE INDEX Stream_Index ON Stream(Event_ID, Name, Audience, Provider);
+
+CREATE TABLE Address
+	(
+	Address_ID	 	NUMBER(15) CONSTRAINT Address_pk PRIMARY KEY, 
+	Address_Line_1 	NUMBER(3) NOT NULL,
+	Address_Line_2 	VARCHAR(25),
+	Post_Code	 	VARCHAR(15) NOT NULL,
+	Country		 	VARCHAR(20) NOT NULL
+	)
+	Partition by LIST (Country) Subpartition by HASH (Address_ID)
+	Subpartitions 8 Store in (tbs1, tbs2, tbs3, tbs4)
+	(Partition Add_1 VALUES ('United_Kingdom') TABLESPACE tbs9,
+	Partition Add_2 VALUES ('Germany') TABLESPACE tbs10,
+	Partition Add_3 VALUES ('France') TABLESPACE tbs11,
+	Partition add_4 VALUES (Default) TABLESPACE tbs12
+	);
+	
+CREATE INDEX Address_Index ON Address(Address_Line_1, Post_Code);
+
+
+CREATE TABLE Contact_Address
+	(
+	Contact_Address_ID 	NUMBER(15) CONSTRAINT ContactAddress_pk PRIMARY KEY,
+	Contact_Detail_ID	 NUMBER(15),
+	Address_ID		 	NUMBER(15) 
+	);
+	
+CREATE INDEX Contact_Address_Index ON Contact_Address(Contact_Detail_ID, Address_ID);
+
+	
+CREATE TABLE Registration
+	(
+	Registration_ID			 		NUMBER(15)  CONSTRAINT Registraion_pk PRIMARY KEY,
+	Event_ID			 			NUMBER(15),
+	Reg_Status_ID                   NUMBER(15),
+	Registration_Method		 		VARCHAR(10) CONSTRAINT Reg_Meth_ck CHECK (Registration_Method = 'Online' or Registration_Method = 'Phone' or Registration_Method = 'Email' or Registration_Method = 'Post' or Registration_Method = 'Other'), 
+	Registration_Type		 		VARCHAR(10) NOT NULL CONSTRAINT Reg_Type_ck CHECK (Registration_Type = 'Exhibitor' or Registration_Type = 'Speaker' or Registration_Type = 'Delegate'),
+	Registration_Social_Provider 	VARCHAR(10)
+	)
+	Partition by list (Registration_Type)
+	(Partition Delegate_P VALUES ('Delegate') TABLESPACE tbs13,
+	Partition Exhibitor_P VALUES ('Exhibitor') TABLESPACE tbs14,
+	Partition Speaker_P VALUES ('Speaker') TABLESPACE tbs15)
+	;
+
+CREATE INDEX Registration_Index ON Registration(Event_ID, Reg_Status_ID);
+
+
+CREATE TABLE Registration_Status
+	(
+	Reg_Status_ID		 		NUMBER(15) CONSTRAINT RegStatus_pk PRIMARY KEY,
+	Registration_Status	 		VARCHAR(15) NOT NULL, 
+	Registration_Step	 		NUMBER(1) CONSTRAINT RegStep_ck CHECK (Registration_Step<6),
+	Last_Access_Date	 		DATE DEFAULT SYSDATE NOT NULL,
+	Registration_Complete	 	CHAR(1) CONSTRAINT Reg_Comp_ck CHECK (Registration_Complete = 'Y' or Registration_Complete = 'N')
+	);
+
+CREATE TABLE Exhibitor
+	(
+	Exhibitor_ID	 	NUMBER(15) CONSTRAINT Exhibitor_pk PRIMARY KEY,
+	Contact_Detail_ID 	NUMBER(15),
+	Registration_ID	 	NUMBER(15),
+	Featured		 	CHAR(1) CONSTRAINT featured_ck CHECK (Featured = 'Y' or Featured = 'N'),
+	Exhibiting_Name	 	VARCHAR(15) NOT NULL,
+	Details			 	VARCHAR(500),
+	Settings		 	VARCHAR(500),
+	Stands		 		CHAR(4) NOT NULL,
+	Created_at	 		DATE DEFAULT SYSDATE NOT NULL,
+	Updated_at	 		DATE DEFAULT SYSDATE NOT NULL
+	);
+
+CREATE INDEX Exhibitor_Index ON Exhibitor(Contact_Detail_ID, Registration_ID, Exhibiting_Name);
+
+CREATE TABLE Speaker
+	(
+	Speaker_ID		 	NUMBER(15) CONSTRAINT Speaker_pk PRIMARY KEY, 
+	Contact_Detail_ID 	NUMBER(15),
+	Registration_ID  	NUMBER(15),
+	Topic			 	VARCHAR(20),
+	Details			 	VARCHAR(500),
+	Placement		 	CHAR(4) NOT NULL
+	);
+	
+CREATE INDEX Speaker_Index ON Speaker(Contact_Detail_ID, Registration_ID, Topic);
+	
+CREATE TABLE Delegate
+	(
+	Delegate_ID		 	NUMBER(15) CONSTRAINT Delegate_pk PRIMARY KEY, 
+	Contact_Detail_ID 	NUMBER(15),
+	Registration_ID  	NUMBER(15),  
+	Terms_Accepted	 	CHAR(1) NOT NULL CONSTRAINT Terms_ck CHECK (Terms_Accepted = 'Y' or  Terms_Accepted = 'N'),
+	Attended		 	CHAR(1) NOT NULL CONSTRAINT Attended_ck CHECK (Attended = 'Y' or Attended = 'N'),
+	Delegate_Status     VARCHAR(15)
+	); 
+	
+CREATE INDEX Delegate_Index ON Delegate(Contact_Detail_ID, Registration_ID);
+	
+CREATE TABLE Feedback
+	(
+	Feedback_ID		 	NUMBER(15) CONSTRAINT Feedback_pk PRIMARY KEY,
+	Delegate_ID	 		NUMBER(15), 
+	Event_ID	 		NUMBER(15),
+	Feedback_URL	 	VARCHAR(60) NOT NULL,
+	Feedback_Step	 	NUMBER(5) CONSTRAINT feedback_ck CHECK (Feedback_Step<6),
+	Feedback_Complete    CHAR(1) CONSTRAINT FeedbackComplete_ck CHECK (Feedback_Complete = 'Y' or Feedback_Complete = 'N')
+	);
+
+CREATE INDEX Feedback_Index ON Feedback(Delegate_ID, Event_ID, Feedback_URL);
+	
+Alter Table Contact_Detail
+ADD Constraint CustomStatus_ContDetail_fk FOREIGN KEY (Custom_Status_ID)
+References Custom_Status(Custom_Status_ID);
+
+Alter Table Lead
+ADD Constraint SalesManager_Lead_fk FOREIGN KEY (Sales_Manager_ID)
+References Sales_Manager(Sales_Manager_ID);
+
+Alter Table Lead
+ADD Constraint ContactDetail__Lead_fk FOREIGN KEY (Contact_Detail_ID)
+References Contact_Detail(Contact_Detail_ID);
+
+Alter Table Sales_Manager
+ADD Constraint ContactDetail_Sales_fk FOREIGN KEY (Contact_Detail_ID)
+References Contact_Detail(Contact_Detail_ID);	
+
+Alter Table Customer_Order
+ADD Constraint SalesManager_CustOrder_fk FOREIGN KEY (Sales_Manager_ID)
+References Sales_Manager(Sales_Manager_ID);	
+	
+Alter Table Customer_Order
+ADD Constraint ContactDetail_CustOrder_fk FOREIGN KEY (Contact_Detail_ID)
+References Contact_Detail(Contact_Detail_ID);	
+
+Alter Table Order_Line
+ADD Constraint CustOrder_OrderLine_Fk FOREIGN KEY (Customer_Order_ID)
+References Customer_Order(Customer_Order_ID);	
+	
+Alter Table Order_Line
+ADD Constraint Event_CustOrder_fk FOREIGN KEY (Event_ID)
+References Event(Event_ID);
+
+Alter Table Event
+ADD Constraint Address_Event_fk FOREIGN KEY (Address_ID)
+References Address(Address_ID);
+
+Alter Table Stream
+ADD Constraint Event_Stream_fk FOREIGN KEY (Event_ID)
+References Event(Event_ID);
+
+Alter Table Contact_Address
+ADD Constraint ContDet_ContAdd_fk FOREIGN KEY (Contact_Detail_ID)
+References Contact_Detail(Contact_Detail_ID);
+
+Alter Table Contact_Address
+ADD Constraint Add_ContAdd_fk FOREIGN KEY (Address_ID)
+References Address(Address_ID);
+
+Alter Table Registration
+ADD Constraint Event_Reg_fk FOREIGN KEY (Event_ID)
+References Event(Event_ID);	
+
+Alter Table Registration
+ADD Constraint RegStat_Reg_fk FOREIGN KEY (Reg_Status_ID)
+References Registration_Status(Reg_Status_ID);	
+
+Alter Table Exhibitor
+ADD Constraint ContDet_Exh_fk FOREIGN KEY (Contact_Detail_ID)
+References Contact_Detail(Contact_Detail_ID);
+
+Alter Table Exhibitor
+ADD Constraint RegID_Exh_fk FOREIGN KEY (Registration_ID)
+References Registration(Registration_ID);	
+
+Alter Table Speaker
+ADD Constraint ContDet_Speaker_fk FOREIGN KEY (Contact_Detail_ID)
+References Contact_Detail(Contact_Detail_ID);	
+
+Alter Table Speaker
+ADD Constraint Reg_Speaker_fk FOREIGN KEY (Registration_ID)
+References Registration(Registration_ID);
+
+Alter Table Delegate
+ADD Constraint ContDet_Delegate_fk FOREIGN KEY (Contact_Detail_ID)
+References Contact_Detail(Contact_Detail_ID);		
+
+Alter Table Delegate
+ADD Constraint Reg_Delegate_fk FOREIGN KEY (Registration_ID)
+References Registration(Registration_ID);	
+
+Alter Table Feedback
+ADD Constraint Del_Feedback_fk FOREIGN KEY (Delegate_ID)
+References Delegate(Delegate_ID);
+
+Alter Table Feedback
+ADD Constraint Event_Feedback_fk FOREIGN KEY (Event_ID)
+References Event(Event_ID);
+
+
+#Insert DATA
+
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (1, 'EU', 'Orange', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (2, 'Student', 'Red', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (3, 'Student', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (4, 'Student', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (5, 'Student', 'Yellow', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (6, 'EU', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (7, 'National', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (8, 'Student', 'Blue', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (9, 'Student', 'Red', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (10, 'Working', 'Blue', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (11, 'Student', 'Yellow', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (12, 'Working', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (13, 'Student', 'Yellow', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (14, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (15, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (16, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (17, 'National', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (18, 'Student', 'Yellow', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (19, 'National', 'Orange', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (20, 'Working', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (21, 'EU', 'Orange', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (22, 'Student', 'Red', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (23, 'Student', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (24, 'Student', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (25, 'Student', 'Yellow', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (26, 'EU', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (27, 'National', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (28, 'Student', 'Blue', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (29, 'Student', 'Red', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (30, 'Working', 'Blue', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (31, 'Student', 'Yellow', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (32, 'Working', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (33, 'Student', 'Yellow', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (34, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (35, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (36, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (37, 'National', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (38, 'Student', 'Yellow', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (39, 'National', 'Orange', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (40, 'Working', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (41, 'EU', 'Orange', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (42, 'Student', 'Red', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (43, 'Student', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (44, 'Student', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (45, 'Student', 'Yellow', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (46, 'EU', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (47, 'National', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (48, 'Student', 'Blue', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (49, 'Student', 'Red', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (50, 'Working', 'Blue', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (51, 'Student', 'Yellow', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (52, 'Working', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (53, 'Student', 'Yellow', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (54, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (55, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (56, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (57, 'National', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (58, 'Student', 'Yellow', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (59, 'National', 'Orange', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (60, 'Working', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (61, 'EU', 'Orange', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (62, 'Student', 'Red', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (63, 'Student', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (64, 'Student', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (65, 'Student', 'Yellow', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (66, 'EU', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (67, 'National', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (68, 'Student', 'Blue', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (69, 'Student', 'Red', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (70, 'Working', 'Blue', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (71, 'Student', 'Yellow', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (72, 'Working', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (73, 'Student', 'Yellow', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (74, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (75, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (76, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (77, 'National', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (78, 'Student', 'Yellow', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (79, 'National', 'Orange', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (80, 'Working', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (81, 'EU', 'Orange', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (82, 'Student', 'Red', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (83, 'Student', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (84, 'Student', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (85, 'Student', 'Yellow', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (86, 'EU', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (87, 'National', 'Red', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (88, 'Student', 'Blue', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (89, 'Student', 'Red', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (90, 'Working', 'Blue', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (91, 'Student', 'Yellow', 'Denied');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (92, 'Working', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (93, 'Student', 'Yellow', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (94, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (95, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (96, 'National', 'Blue', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (97, 'National', 'Red', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (98, 'Student', 'Yellow', 'Approved');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (99, 'National', 'Orange', 'Pending');
+insert into Custom_Status (Custom_Status_ID, Visa_Type, Visa_Colour, Visa_Status) values (100, 'Working', 'Red', 'Pending');
+
+
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (1, 1, 'Rev', 'Dorri', 'Griselda', 'Bencher', 'Marketing Manager', 'F', 'Sotho', 'Janyx', 'France', 'eu mi nulla ac enim in tempor turpis nec euismod', '4462446197', 'gbencher0@about.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (2, 2, 'Rev', 'Gerta', 'Fidelia', 'Filipychev', 'Biostatistician II', 'F', 'Armenian', 'Livefish', 'China', 'ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl', '8959965888', 'ffilipychev1@weibo.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (3, 3, 'Ms', 'Wandie', 'Davida', 'Scowcroft', 'Structural Analysis Engineer', 'F', 'Northern Sotho', 'Browsecat', 'Greece', 'lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam', '4098931876', 'dscowcroft2@free.fr', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (4, 4, 'Mrs', 'Stefan', 'Thaddeus', 'Golborne', 'Quality Control Specialist', 'M', 'Swati', 'Jabbersphere', 'Somalia', 'lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget', '8722999467', 'tgolborne3@reddit.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (5, 5, 'Dr', 'Buckie', 'Fletcher', 'Osmon', 'Statistician I', 'M', 'Albanian', 'Pixoboo', 'China', 'proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing', '9014817811', 'fosmon4@trellian.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (6, 6, 'Honorable', 'Garret', 'Gasper', 'McCormick', 'Structural Engineer', 'M', 'Indonesian', 'Fivebridge', 'China', 'justo eu massa donec dapibus duis at velit eu est congue elementum in', '2699425915', 'gmccormick5@mapy.cz', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (7, 7, 'Mrs', 'Thomasina', 'Emmaline', 'Cowlishaw', 'Database Administrator III', 'F', 'Gagauz', 'Mudo', 'China', 'cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus', '4068694099', 'ecowlishaw6@wunderground.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (8, 8, 'Mr', 'Cordi', 'Brunhilda', 'Klimowski', 'Software Test Engineer IV', 'F', 'Swati', 'Skipfire', 'Brazil', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', '7061207207', 'bklimowski7@mozilla.org', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (9, 9, 'Dr', 'Web', 'Rory', 'Wontner', 'Help Desk Operator', 'M', 'Kannada', 'Minyx', 'China', 'et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec', '3749102969', 'rwontner8@newsvine.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (10, 10, 'Mr', 'Hally', 'Morena', 'Whisson', 'Assistant Manager', 'F', 'Moldovan', 'Minyx', 'Malaysia', 'quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat', '5458580667', 'mwhisson9@github.io', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (11, 11, 'Dr', 'Wally', 'Dewie', 'Jendrich', 'Environmental Specialist', 'M', 'Thai', 'Google', 'Indonesia', 'ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien', '3868313417', 'djendricha@bloglovin.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (12, 12, 'Rev', 'Hollyanne', 'Terza', 'Garland', 'Safety Technician II', 'F', 'French', 'Voolia', 'France', 'vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis', '5483632026', 'tgarlandb@indiegogo.com', '2015:09:02 03:30:23', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (13, 13, 'Rev', 'Benyamin', 'Caddric', 'Risbie', 'Biostatistician I', 'M', 'Macedonian', 'Google', 'Philippines', 'nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor', '3033715748', 'crisbiec@ibm.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (14, 14, 'Mrs', 'Haley', 'Nerita', 'Mimmack', 'Environmental Specialist', 'F', 'Arabic', 'Pixoboo', 'Indonesia', 'in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in', '3569032075', 'nmimmackd@g.co', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (15, 15, 'Ms', 'Lynde', 'Jordan', 'McAree', 'Office Assistant IV', 'F', 'Irish Gaelic', 'Zazio', 'Indonesia', 'rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium', '3613324641', 'jmcareee@mac.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (16, 16, 'Ms', 'Daniel', 'Gilbert', 'Cocksedge', 'Web Developer III', 'M', 'Greek', 'Google', 'Indonesia', 'luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur', '9325022272', 'gcocksedgef@aol.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (17, 17, 'Dr', 'Sonya', 'Ardenia', 'Church', 'Chief Design Engineer', 'F', 'Korean', 'Cogidoo', 'Costa Rica', 'non mauris morbi non lectus aliquam sit amet diam in magna', '4174415772', 'achurchg@shinystat.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (18, 18, 'Rev', 'Marya', 'Giovanna', 'Teece', 'Professor', 'F', 'Czech', 'Google', 'China', 'non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non', '6327311257', 'gteeceh@soup.io', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (19, 19, 'Rev', 'Isahella', 'Flore', 'Alleway', 'Associate Professor', 'F', 'Fijian', 'Tazzy', 'China', 'donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque', '5435990355', 'fallewayi@arstechnica.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (20, 20, 'Honorable', 'Traci', 'Lucy', 'McGow', 'Community Outreach Specialist', 'F', 'Danish', 'Google', 'Venezuela', 'blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem', '2511078135', 'lmcgowj@dailymail.co.uk', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (21, 21, 'Mrs', 'Tate', 'Dav', 'Hanby', 'Geological Engineer', 'M', 'Belarusian', 'Mymm', 'Portugal', 'dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis', '5531174821', 'dhanbyk@chicagotribune.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (22, 22, 'Dr', 'Leona', 'Issy', 'Lawdham', 'General Manager', 'F', 'Indonesian', 'Dynava', 'Thailand', 'curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien', '3266200313', 'ilawdhaml@odnoklassniki.ru', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (23, 23, 'Honorable', 'Rachel', 'Korney', 'Feasley', 'Civil Engineer', 'F', 'Māori', 'Skilith', 'China', 'volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc', '2444752981', 'kfeasleym@sakura.ne.jp', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (24, 24, 'Ms', 'Rogerio', 'Rolando', 'Matussov', 'Graphic Designer', 'M', 'Swedish', 'Yodoo', 'Canada', 'suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus', '4346706494', 'rmatussovn@dagondesign.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (25, 25, 'Mrs', 'Ettore', 'Herbert', 'Clackers', 'Account Executive', 'M', 'Tetum', 'Buzzster', 'Dominican Republic', 'tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget', '7043380264', 'hclackerso@uol.com.br', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (26, 26, 'Rev', 'Tamara', 'Melany', 'Howson', 'Analog Circuit Design manager', 'F', 'Zulu', 'Gabcube', 'Brazil', 'sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque', '3244238248', 'mhowsonp@com.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (27, 27, 'Mr', 'Seana', 'Morganica', 'Shegog', 'VP Product Management', 'F', 'Tetum', 'Camimbo', 'Russia', 'amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien', '4547600026', 'mshegogq@creativecommons.org', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (28, 28, 'Dr', 'Karl', 'Wade', 'Jeandin', 'Human Resources Assistant III', 'M', 'Lithuanian', 'Innojam', 'Togo', 'platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum', '2299700992', 'wjeandinr@google.it', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (29, 29, 'Mrs', 'Genvieve', 'Cherrita', 'Orrobin', 'Director of Sales', 'F', 'Fijian', 'Flashspan', 'China', 'quis odio consequat varius integer ac leo pellentesque ultrices mattis', '6213503808', 'corrobins@hao123.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (30, 30, 'Mrs', 'Kaylee', 'Lorrin', 'Najera', 'Marketing Manager', 'F', 'Assamese', 'Voonder', 'Brazil', 'accumsan tortor quis turpis sed ante vivamus tortor duis mattis', '9537288039', 'lnajerat@vinaora.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (31, 31, 'Ms', 'Gusti', 'Corrinne', 'Klauer', 'Quality Engineer', 'F', 'French', 'Chatterbridge', 'Poland', 'volutpat eleifend donec ut dolor morbi vel lectus in quam', '2427522201', 'cklaueru@home.pl', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (32, 32, 'Honorable', 'Cybill', 'Eddie', 'Aldous', 'Payment Adjustment Coordinator', 'F', 'Czech', 'Skimia', 'Ukraine', 'in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices', '2224681683', 'ealdousv@fda.gov', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (33, 33, 'Honorable', 'Nadia', 'Hana', 'Aberhart', 'Information Systems Manager', 'F', 'Burmese', 'Skyndu', 'Kazakhstan', 'ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis', '6674855184', 'haberhartw@slate.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (34, 34, 'Mr', 'Constantia', 'Marlie', 'Alwen', 'Marketing Assistant', 'F', 'Bulgarian', 'Gigazoom', 'Tunisia', 'tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit', '6385460440', 'malwenx@accuweather.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (35, 35, 'Rev', 'Reine', 'Silvie', 'Koba', 'Web Designer II', 'F', 'French', 'Demivee', 'France', 'vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam', '9897460013', 'skobay@mozilla.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (36, 36, 'Mrs', 'Julius', 'Hazel', 'Hannigan', 'Physical Therapy Assistant', 'M', 'Tamil', 'Thoughtstorm', 'Dominican Republic', 'vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla', '6925945782', 'hhanniganz@ycombinator.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (37, 37, 'Ms', 'Rosemary', 'Maggee', 'Castellino', 'Staff Scientist', 'F', 'Japanese', 'Photobean', 'Colombia', 'integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices', '1442729719', 'mcastellino10@elpais.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (38, 38, 'Rev', 'Carey', 'Murial', 'Goosey', 'VP Accounting', 'F', 'Somali', 'Vipe', 'Portugal', 'nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec', '3055158998', 'mgoosey11@google.com.br', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (39, 39, 'Ms', 'Valene', 'Petronella', 'Franzewitch', 'Biostatistician I', 'F', 'Dari', 'Rhyloo', 'Philippines', 'justo sollicitudin ut suscipit a feugiat et eros vestibulum ac', '7505895068', 'pfranzewitch12@fastcompany.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (40, 40, 'Honorable', 'Roldan', 'Gasparo', 'Allsobrook', 'VP Product Management', 'M', 'Tetum', 'Youspan', 'China', 'vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia', '8341176255', 'gallsobrook13@indiegogo.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (41, 41, 'Mrs', 'Dorri', 'Cissy', 'Featherbie', 'Research Associate', 'F', 'Moldovan', 'Google', 'China', 'velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat', '5981175045', 'cfeatherbie14@delicious.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (42, 42, 'Dr', 'Edi', 'Nari', 'Blanckley', 'Financial Analyst', 'F', 'Montenegrin', 'Zoomdog', 'Ukraine', 'blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus', '3928320180', 'nblanckley15@illinois.edu', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (43, 43, 'Mrs', 'Athena', 'Marcelia', 'McCaghan', 'Research Nurse', 'F', 'Malagasy', 'Pixope', 'China', 'vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed', '4358186347', 'mmccaghan16@constantcontact.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (44, 44, 'Dr', 'Anette', 'Amara', 'Golby', 'Community Outreach Specialist', 'F', 'Quechua', 'Realbridge', 'China', 'posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec', '4906563631', 'agolby17@time.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (45, 45, 'Mrs', 'Obediah', 'Udell', 'Gobolos', 'Marketing Assistant', 'M', 'Croatian', 'Buzzbean', 'Portugal', 'eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis', '4619245678', 'ugobolos18@globo.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (46, 46, 'Ms', 'Adler', 'Kevin', 'Attrey', 'Human Resources Manager', 'M', 'Hebrew', 'Yakijo', 'Belarus', 'et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum', '8433172427', 'kattrey19@usa.gov', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (47, 47, 'Rev', 'Doug', 'Wheeler', 'Bradane', 'Health Coach IV', 'M', 'West Frisian', 'Lazz', 'Tunisia', 'placerat ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet', '9036954561', 'wbradane1a@unesco.org', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (48, 48, 'Ms', 'Krysta', 'Gwennie', 'Peascod', 'Programmer II', 'F', 'Spanish', 'Google', 'France', 'non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet', '9728361384', 'gpeascod1b@deliciousdays.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (49, 49, 'Mrs', 'Gustave', 'Harp', 'Blunden', 'Marketing Manager', 'M', 'Swedish', 'Yodoo', 'Brazil', 'interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit', '6602952843', 'hblunden1c@cpanel.net', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (50, 50, 'Mr', 'Sheela', 'Elianore', 'Girardengo', 'Chief Design Engineer', 'F', 'Swedish', 'Zoombox', 'Poland', 'ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse', '1901955315', 'egirardengo1d@europa.eu', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (51, 51, 'Honorable', 'Micheal', 'Lewie', 'Bebbington', 'Statistician I', 'M', 'Irish Gaelic', 'Tambee', 'China', 'magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean', '7262871190', 'lbebbington1e@narod.ru', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (52, 52, 'Mrs', 'Shae', 'Odilia', 'Fonte', 'Data Coordiator', 'F', 'Persian', 'Lajo', 'Greece', 'eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices', '6146860506', 'ofonte1f@quantcast.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (53, 53, 'Mrs', 'Claudina', 'Moreen', 'Harsnep', 'Marketing Manager', 'F', 'Luxembourgish', 'Oyoba', 'Indonesia', 'pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac', '2186471918', 'mharsnep1g@t.co', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (54, 54, 'Mrs', 'Conrade', 'Irwinn', 'Whitcher', 'Budget/Accounting Analyst II', 'M', 'Ndebele', 'Oyoyo', 'Peru', 'sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui', '1508412746', 'iwhitcher1h@imgur.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (55, 55, 'Ms', 'Miner', 'Lauren', 'Beynkn', 'Director of Sales', 'M', 'Kazakh', 'Meedoo', 'Poland', 'eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus', '3387572717', 'lbeynkn1i@google.com.br', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (56, 56, 'Ms', 'Johna', 'Ermengarde', 'Alibone', 'Assistant Media Planner', 'F', 'Luxembourgish', 'Youspan', 'Indonesia', 'in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum', '3046953091', 'ealibone1j@jalbum.net', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (57, 57, 'Rev', 'Sadie', 'Vittoria', 'Strut', 'Assistant Manager', 'F', 'Montenegrin', 'Fivebridge', 'China', 'volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut', '1471106623', 'vstrut1k@cpanel.net', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (58, 58, 'Mr', 'Rosa', 'Henrie', 'Chidler', 'Systems Administrator III', 'F', 'Malayalam', 'Gigaclub', 'Indonesia', 'nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non', '8219743445', 'hchidler1l@cdc.gov', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (59, 59, 'Mr', 'Fidole', 'Barnard', 'Kinder', 'Budget/Accounting Analyst II', 'M', 'Greek', 'Skyble', 'China', 'pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus', '1819501252', 'bkinder1m@home.pl', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (60, 60, 'Mrs', 'Blanca', 'Melissa', 'Rodden', 'Assistant Manager', 'F', 'Thai', 'Cogibox', 'Greece', 'turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus', '6856071975', 'mrodden1n@cbc.ca', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (61, 61, 'Ms', 'Evania', 'Dolly', 'Knolles-Green', 'Editor', 'F', 'Māori', 'Mydeo', 'Venezuela', 'viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et', '9012731465', 'dknollesgreen1o@google.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (62, 62, 'Mrs', 'Trumann', 'Kerwinn', 'Lynam', 'Automation Specialist I', 'M', 'Haitian Creole', 'Skynoodle', 'Russia', 'non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non', '1813830091', 'klynam1p@upenn.edu', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (63, 63, 'Mrs', 'Pearline', 'Cyndie', 'Chaston', 'Quality Control Specialist', 'F', 'Kyrgyz', 'Vimbo', 'United Kingdom', 'eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget', '7195375818', 'cchaston1q@vinaora.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (64, 64, 'Mr', 'Orel', 'Jilleen', 'Viger', 'Tax Accountant', 'F', 'Estonian', 'Gigazoom', 'Myanmar', 'metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae', '7554150363', 'jviger1r@hhs.gov', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (65, 65, 'Dr', 'Noby', 'Monti', 'Clixby', 'Developer I', 'M', 'Malayalam', 'Mybuzz', 'Indonesia', 'est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien', '6401137149', 'mclixby1s@exblog.jp', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (66, 66, 'Honorable', 'Raviv', 'Wes', 'Scowen', 'Marketing Manager', 'M', 'West Frisian', 'Jabberstorm', 'Indonesia', 'in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus', '2077509297', 'wscowen1t@dedecms.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (67, 67, 'Dr', 'Aguie', 'Sander', 'Tour', 'Payment Adjustment Coordinator', 'M', 'Filipino', 'Eazzy', 'Mozambique', 'quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut', '9047817571', 'stour1u@ameblo.jp', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (68, 68, 'Mrs', 'Cassie', 'Jimmy', 'Danilchev', 'Marketing Manager', 'M', 'Somali', 'Omba', 'Sweden', 'neque sapien placerat ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse', '1763735048', 'jdanilchev1v@hubpages.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (69, 69, 'Mrs', 'Lula', 'Gertrud', 'Coppard', 'Clinical Specialist', 'F', 'Sotho', 'Flipstorm', 'Ukraine', 'ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae', '4288716200', 'gcoppard1w@google.ru', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (70, 70, 'Mr', 'Rouvin', 'Dimitry', 'Aizlewood', 'Engineer III', 'M', 'French', 'Zazio', 'China', 'consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo', '8306508905', 'daizlewood1x@sogou.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (71, 71, 'Honorable', 'Myriam', 'Zaria', 'Kensett', 'Dental Hygienist', 'F', 'Quechua', 'Fatz', 'Nicaragua', 'orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis', '6907755793', 'zkensett1y@shop-pro.jp', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (72, 72, 'Mrs', 'Marysa', 'Carolann', 'Edmands', 'Research Assistant IV', 'F', 'Bislama', 'Tagtune', 'China', 'eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget', '8421425597', 'cedmands1z@webmd.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (73, 73, 'Mr', 'Boyd', 'Dexter', 'Debrett', 'Senior Cost Accountant', 'M', 'Albanian', 'Einti', 'China', 'egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla', '5991949620', 'ddebrett20@elegantthemes.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (74, 74, 'Rev', 'Elysha', 'Jesse', 'Dun', 'Safety Technician I', 'F', 'Zulu', 'Skipstorm', 'Nepal', 'massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est', '2476400284', 'jdun21@home.pl', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (75, 75, 'Ms', 'Charis', 'Lind', 'Slyme', 'Assistant Media Planner', 'F', 'Hindi', 'Browsecat', 'Ukraine', 'nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt', '3761114876', 'lslyme22@economist.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (76, 76, 'Rev', 'Othilia', 'Starlene', 'Tomasik', 'Sales Associate', 'F', 'Quechua', 'Mymm', 'Guatemala', 'libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras', '5238531377', 'stomasik23@usgs.gov', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (77, 77, 'Mr', 'Dyanna', 'Philis', 'Buffham', 'Senior Editor', 'F', 'Indonesian', 'Yadel', 'Nicaragua', 'aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede', '3276503421', 'pbuffham24@washington.edu', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (78, 78, 'Dr', 'Riva', 'Hetty', 'Cripin', 'Desktop Support Technician', 'F', 'Bislama', 'Divanoodle', 'Trinidad and Tobago', 'lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna', '1635500642', 'hcripin25@reverbnation.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (79, 79, 'Rev', 'Fernando', 'Wadsworth', 'Dmitr', 'Account Representative II', 'M', 'Lithuanian', 'Buzzbean', 'Philippines', 'eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing', '5096833798', 'wdmitr26@myspace.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (80, 80, 'Honorable', 'Perrine', 'Debbi', 'Talby', 'Health Coach III', 'F', 'Telugu', 'Yodoo', 'Jordan', 'vestibulum velit id pretium iaculis diam erat fermentum justo nec', '4188977640', 'dtalby27@wired.com', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (81, 81, 'Mrs', 'Brander', 'Roi', 'Barszczewski', 'Marketing Manager', 'M', 'Zulu', 'Feedfish', 'Uruguay', 'sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus', '2626545021', 'rbarszczewski28@sina.com.cn', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (82, 82, 'Dr', 'Constantia', 'Joellyn', 'Stanistrete', 'Physical Therapy Assistant', 'F', 'Nepali', 'Zoomlounge', 'Indonesia', 'dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris', '4306132008', 'jstanistrete29@prlog.org', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (83, 83, 'Dr', 'Tobe', 'Tiebold', 'Philo', 'Accountant I', 'M', 'Arabic', 'Zava', 'Argentina', 'sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus', '6813338544', 'tphilo2a@eepurl.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (84, 84, 'Dr', 'Georgena', 'Zuzana', 'Abisetti', 'Executive Secretary', 'F', 'Somali', 'Tagchat', 'Indonesia', 'vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus', '4777705541', 'zabisetti2b@storify.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (85, 85, 'Mr', 'Sutton', 'Borden', 'Anwyl', 'Chief Design Engineer', 'M', 'Māori', 'Youspan', 'China', 'ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam', '9858381854', 'banwyl2c@devhub.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (86, 86, 'Rev', 'Robinette', 'Augustina', 'Conklin', 'Senior Developer', 'F', 'French', 'Gabspot', 'Philippines', 'morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt', '8768892994', 'aconklin2d@slashdot.org', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (87, 87, 'Honorable', 'Randolf', 'Garfield', 'Challenor', 'Pharmacist', 'M', 'Swahili', 'Ooba', 'Poland', 'semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam dui', '9722984081', 'gchallenor2e@mlb.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (88, 88, 'Honorable', 'Renell', 'Brett', 'Mughal', 'Research Assistant I', 'F', 'Irish Gaelic', 'Latz', 'Czech Republic', 'suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet', '5605356201', 'bmughal2f@cbc.ca', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (89, 89, 'Ms', 'Ulrike', 'Zsazsa', 'Allman', 'Senior Cost Accountant', 'F', 'Tok Pisin', 'Voomm', 'China', 'felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis', '5136320975', 'zallman2g@jugem.jp', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (90, 90, 'Mrs', 'Kippie', 'Durant', 'Jacobs', 'Payment Adjustment Coordinator', 'M', 'Hebrew', 'Brainbox', 'Indonesia', 'tristique fusce congue diam id ornare imperdiet sapien urna pretium', '5871580057', 'djacobs2h@webeden.co.uk', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (91, 91, 'Mr', 'May', 'Jacquenette', 'Griswood', 'Accountant III', 'F', 'Dhivehi', 'Omba', 'Russia', 'id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate', '2623287457', 'jgriswood2i@youtu.be', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (92, 92, 'Dr', 'Ingeberg', 'Naoma', 'Terese', 'Marketing Manager', 'F', 'Somali', 'Aivee', 'Philippines', 'convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi', '3554311956', 'nterese2j@w3.org', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (93, 93, 'Ms', 'Alexio', 'Gualterio', 'Spir', 'Geological Engineer', 'M', 'Belarusian', 'Lazzy', 'Czech Republic', 'sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla', '3865328161', 'gspir2k@a8.net', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (94, 94, 'Dr', 'Evita', 'Clarine', 'McCaskell', 'Dental Hygienist', 'F', 'Czech', 'Jabbersphere', 'Yemen', 'penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem', '5868990218', 'cmccaskell2l@cargocollective.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (95, 95, 'Mrs', 'Sharron', 'Myrle', 'Gemmill', 'VP Quality Control', 'F', 'Arabic', 'Plajo', 'Indonesia', 'posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus', '4261900686', 'mgemmill2m@buzzfeed.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (96, 96, 'Dr', 'Hasty', 'Oliviero', 'James', 'Data Coordiator', 'M', 'Luxembourgish', 'Rhynyx', 'China', 'a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio', '9282951381', 'ojames2n@engadget.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (97, 97, 'Rev', 'Carlie', 'Inigo', 'Highway', 'Database Administrator III', 'M', 'Māori', 'Skynoodle', 'Thailand', 'arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo', '6647480512', 'ihighway2o@so-net.ne.jp', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (98, 98, 'Mrs', 'Chase', 'Robbert', 'Marusik', 'Professor', 'M', 'Estonian', 'Oyope', 'Ukraine', 'ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis', '4725136644', 'rmarusik2p@stumbleupon.com', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (99, 99, 'Rev', 'Edward', 'Feliks', 'Gillott', 'Quality Engineer', 'M', 'Aymara', 'Rhynoodle', 'Indonesia', 'ac tellus semper interdum mauris ullamcorper purus sit amet nulla', '5856824114', 'fgillott2q@github.io', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Contact_Detail (Contact_Detail_ID, Custom_Status_ID, Title, First_Name, Middle_Name, Last_Name, Job_Title, Sex, Language, Company, Nationality, Biography, Primary_Mobile_Number, Primary_Email, Created_atat, Updated_at) values (100, 100, 'Mrs', 'Nance', 'Koo', 'Sansome', 'Clinical Specialist', 'F', 'Croatian', 'Avamba', 'China', 'fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl', '5249356008', 'ksansome2r@dion.ne.jp', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (1, 21, 4, 'Y');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (2, 22, 3, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (3, 23, 4, 'Y');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (4, 24, 8, 'Y');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (5, 25, 4, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (6, 26, 6, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (7, 27, 4, 'Y');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (8, 28, 3, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (9, 29, 1, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (10, 30, 6, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (11, 31, 9, 'Y');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (12, 32, 6, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (13, 33, 7, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (14, 34, 9, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (15, 35, 8, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (16, 36, 2, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (17, 37, 1, 'N');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (18, 38, 2, 'Y');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (19, 39, 5, 'Y');
+insert into Sales_Manager (Sales_Manager_ID, Contact_Detail_ID, Managed_Customer_Count, Manages_Events) values (20, 40, 9, 'Y');
+
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (1, 1, 1, 'Active', 'Baby', 'Juvenile osteochondrosis of head of femur [Legg-Calve-Perthes], unspecified leg');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (2, 2, 30, 'Active', 'Automotive', 'Acute disseminated encephalitis and encephalomyelitis (ADEM)');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (3, 3, 49, 'NULL', 'Computers', 'Nondisplaced transverse fracture of unspecified patella, subsequent encounter for closed fracture with malunion');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (4, 4, 53, 'Active', 'Outdoors', 'Acquired deformities of toe(s), unspecified, unspecified foot');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (5, 5, 66, 'Active', 'Health', 'Frostbite with tissue necrosis of left finger(s), sequela');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (6, 6, 68, 'Closed', 'Baby', 'Postprocedural hematoma of a musculoskeletal structure following a musculoskeletal system procedure');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (7, 7, 81, 'Closed', 'Health', 'Burn due to water-skis on fire, subsequent encounter');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (8, 8, 92, 'NULL', 'Books', 'Displacement of graft of urinary organ, initial encounter');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (9, 9, 9, 'Closed', 'Computers', 'Obstruction due to foreign body accidentally left in body following aspiration, puncture or other catheterization');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (10, 10, 13, 'Closed', 'Kids', 'Intraspinal abscess and granuloma');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (11, 11, 11, 'Active', 'Baby', 'Laceration of dorsal vein of unspecified foot, sequela');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (12, 12, 12, 'NULL', 'Baby', 'Person boarding or alighting a heavy transport vehicle injured in collision with other nonmotor vehicle, sequela');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (13, 13, 14, 'Active', 'Kids', 'Malignant neoplasm of overlapping sites of tonsil');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (14, 14, 18, 'NULL', 'Health', 'Medial subluxation and dislocation of proximal end of tibia');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (15, 15, 41, 'Closed', 'Jewelery', 'Nondisplaced fracture of neck of left radius');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (16, 16, 16, 'Closed', 'Jewelery', 'Toxoplasma myositis');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (17, 17, 20, 'Active', 'Electronics', 'Poisoning by unspecified systemic antibiotic, undetermined, sequela');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (18, 18, 28, 'Closed', 'Shoes', 'Nondisplaced transverse fracture of shaft of right ulna, subsequent encounter for closed fracture with nonunion');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (19, 19, 38, 'Closed', 'Kids', 'Fall from skateboard, initial encounter');
+insert into Lead (Lead_ID, Sales_Manager_ID, Contact_Detail_ID, Lead_Status, Company_Sector, Detail) values (20, 20, 19, 'Closed', 'Books', 'Contusion, laceration, and hemorrhage of brainstem with loss of consciousness of 1 hour to 5 hours 59 minutes');
+																																																			
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (1, 1, 1, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Processing', '£', '15000', 'Y', '12000');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (2, 2, 30, to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR'), 'Complete', '£', '11000', 'N', '11000');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (3, 2, 49, to_date('10:01 11/10/2018' , 'HH24:MI DD/MM/RRRR'), 'In-Progress', '£', '13742.77', 'N', '13742.77');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (4, 4, 53, to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR'), 'Complete', '£', '13562.62', 'Y', '10500.15');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (5, 5, 66, to_date('10:01 11/10/2018' , 'HH24:MI DD/MM/RRRR'), 'In-Progress', '£', '1770.12', 'Y', '1234.23');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (6, 4, 68, to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR'), 'In-Progress', '£', '337.97', 'N', '337.97');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (7, 4, 81, to_date('10:01 11/10/2018' , 'HH24:MI DD/MM/RRRR'), 'Processing', '£', '11394.96', 'Y', '8930.23');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (8, 4, 92, to_date('10:01 11/10/2012' , 'HH24:MI DD/MM/RRRR'), 'Complete', '£', '14038.87', 'Y', '11032.12');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (9, 9, 9, to_date('10:01 11/10/2018' , 'HH24:MI DD/MM/RRRR'), 'Complete', '£', '9940.36', 'Y', '7243.88');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (10, 10, 12, to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR'), 'In-Progress', '£', '214.46', 'N', '214.46');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (11, 11, 11, to_date('10:01 11/10/2012' , 'HH24:MI DD/MM/RRRR'), 'Placed', '£', '422.28', 'N', '422.28');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (12, 12, 9, to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR'), 'Placed', '£', '15000', 'Y', '12000');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (13, 12, 13, to_date('10:01 11/10/2012' , 'HH24:MI DD/MM/RRRR'), 'Processing', '£', '8605.83', 'Y', '6366.95');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (14, 14, 14, to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR'), 'Placed', '£', '8735.58', 'N', '8735.58');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (21, 12, 9, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Placed', '£', '2105.23', 'N', '2105.23');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (16, 12, 16, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Complete', '£', '10215.55', 'Y', '8873.45');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (17, 17, 17, to_date('10:01 11/10/2012' , 'HH24:MI DD/MM/RRRR'), 'Placed', '£', '8191.71', 'Y', '6000.10');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (18, 17, 18, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Processing', '£', '14276.23', 'N', '14276.23');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (19, 19, 49, to_date('10:01 11/10/2016' , 'HH24:MI DD/MM/RRRR'), 'Processing', '£', '8002.83', 'Y', '6367.13');
+insert into Customer_Order (Customer_Order_ID, Sales_Manager_ID, Contact_Detail_ID, Order_Date, Order_Status, Currency, Total_Order_Value, Vat_Exempt, Subtotal_Vat) values (20, 20, 20, to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR'), 'Processing', '£', '4182.74', 'N', '4182.74');
+
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (1, 35, 'Superior Park', 'Dy223a', 'United Kingdom');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (2, 48, 'Dennis Hill', 'L-4982', 'Luxembourg');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (3, 54, 'Merchant Point', 'Dy782a', 'United Kingdom');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (4, 47, '2nd Street', 'Wv6726', 'United Kingdom');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (5, 19, 'Milwaukee Trail', 'Wv019e', 'United Kingdom');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (6, 7, 'Continental Circle', 'SA 10DG', 'United Kingdom');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (7, 41, 'Briar Crest Junction', 'Wv203a', 'United Kingdom');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (8, 31, 'Di Loreto Pass', 'B6210d', 'United Kingdom');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (9, 51, 'Bunting Crossing', 'b6203d', 'United Kingdom');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (10, 15, 'Granby Crossing', 'b6519e', 'United Kingdom');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (11, 6, 'Muir Place', 'b7820x', 'United Kingdom');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (12, 35, 'Fisk Way', '249929', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (13, 26, 'Donald Center', '74154 CEDEX', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (14, 54, 'Superior Circle', '301086', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (15, 20, 'Cardinal Point', '155381', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (16, 54, 'Emmet Way', '30028 CEDEX 9', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (17, 7, 'Meadow Vale Hill', '75049', 'United States');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (18, 40, 'Jackson Pass', '347879', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (19, 55, 'Glacier Hill Junction', '95-001', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (20, 13, 'Lotheville Terrace', '10823', 'Germany');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (21, 38, 'Farwell Terrace', '25775', 'United States');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (22, 17, 'Northfield Way', '640961', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (23, 8, 'Eggendart Pass', '66-220', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (24, 45, 'Hazelcrest Road', '19-335', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (25, 39, 'Maple Wood Trail', '169205', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (26, 32, 'Morning Junction', '37240', 'United States');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (27, 2, 'Hudson Park', '396564', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (28, 30, 'Anzinger Way', 103940, 'Armenia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (29, 16, 'Talisman Park', '39-410', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (30, 28, 'Westport Lane', '366502', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (31, 29, 'Pleasure Avenue', '197738', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (32, 5, 'Manitowish Terrace', '641642', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (33, 8, 'Packers Parkway', '243429', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (34, 42, 'Troy Hill', '412478', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (35, 17, 'Maryland Street', '75817 CEDEX 17', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (36, 2, 'Kinsman Road', '48-250', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (37, 5, 'John Wall Lane', '623075', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (38, 53, 'Erie Drive', '01189', 'Germany');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (39, 40, 'Golden Leaf Way', '35-959', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (40, 47, 'Almo Avenue', '142143', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (41, 45, 'Mifflin Place', '95974 CEDEX 2', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (42, 19, 'Lunder Plaza', '29327 CEDEX', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (43, 9, 'Stang Trail', '03017 CEDEX', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (44, 37, '1st Park', '188674', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (45, 4, 'Pierstorff Center', '10060', 'United States');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (46, 1, 'Michigan Way', '93344 CEDEX', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (47, 25, 'Sloan Avenue', '46-233', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (48, 34, 'Linden Point', '24-150', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (49, 6, 'Pawling Trail', '88084 CEDEX 9', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (50, 32, 'Sutteridge Circle', '607036', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (51, 52, 'Steensland Crossing', '79705', 'United States');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (52, 11, 'Warrior Point', '14030 CEDEX 4', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (53, 32, 'Walton Point', '96-127', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (54, 53, 'Larry Place', '623036', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (55, 28, 'Meadow Ridge Place', '26-807', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (56, 38, 'Dennis Center', '446521', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (57, 49, 'Hoard Trail', '43-200', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (58, 10, 'Mifflin Point', '37-300', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (59, 13, 'Sommers Hill', '90451', 'Germany');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (60, 11, 'Hoard Point', '13792 CEDEX 3', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (61, 8, 'Eggendart Pass', '443099', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (62, 51, 'Riverside Park', '07522', 'United States');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (63, 45, 'Montana Way', '162250', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (64, 3, 'Lighthouse Bay Junction', '663620', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (65, 4, 'Sachs Point', '42404 CEDEX', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (66, 54, 'Anniversary Road', '628146', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (67, 25, 'Warrior Avenue', 10-203, 'Armenia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (68, 51, 'Westend Junction', '606570', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (69, 5, 'Grayhawk Alley', '69424 CEDEX 03', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (70, 20, 'Brown Crossing', '143020', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (71, 38, 'Paget Avenue', '28944', 'Spain');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (72, 42, 'Hanson Circle', '39605 CEDEX', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (73, 29, 'Mcguire Pass', '641730', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (74, 48, 'Loomis Drive', '77090', 'United States');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (75, 43, 'Milwaukee Park', '06281 CEDEX 3', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (76, 42, 'Reinke Hill', '95154 CEDEX', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (77, 6, 'Bashford Lane', '175310', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (78, 13, 'Oak Street', '91077 CEDEX', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (79, 5, 'Moose Plaza', '45979 CEDEX 9', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (80, 3, 'Westend Alley', '37939', 'United States');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (81, 51, 'Loomis Court', '94109 CEDEX', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (82, 12, 'Sachs Point', '624486', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (83, 11, 'Meadow Valley Plaza', '33010 CEDEX', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (84, 54, 'Sloan Street', '301233', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (85, 40, 'Claremont Circle', '141850', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (86, 14, 'Moulton Point', '97-510', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (87, 32, 'Susan Plaza', '359120', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (88, 2, 'Debs Center', 103102, 'Armenia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (89, 36, 'Golf Course Street', '23-412', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (90, 6, 'Debra Place', '652993', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (91, 5, 'Bunting Park', '28901 CEDEX 9', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (92, 31, 'Crest Line Circle', '13281 CEDEX 06', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (93, 30, 'Lighthouse Bay Way', '94675 CEDEX', 'France');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (94, 38, 'Morningstar Center', '423031', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (95, 3, 'Lukken Center', '55470', 'United States');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (96, 24, 'Pawling Court', '81-035', 'Poland');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (97, 32, 'Redwing Terrace', '92878', 'United States');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (98, 2, 'David Drive', '671633', 'Russia');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (99, 22, 'Debra Trail', '29215', 'United States');
+insert into Address (Address_ID, Address_Line_1, Address_Line_2, Post_Code, Country) values (100, 2, 'Towne Circle', '63-308', 'Poland');
+
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (1, 1, to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (2, 1, to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (3, 1, to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (4, 3, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (5, 3, to_date('10:01 03/04/2012' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (6, 3, to_date('10:01 03/04/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (7, 5, to_date('10:01 03/04/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (8, 5, to_date('10:01 03/04/2019' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (9, 5, to_date('10:01 08/09/2012' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (10, 8, to_date('10:01 08/09/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (11, 10, to_date('10:01 08/09/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (12, 12, to_date('10:01 08/09/2019' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (13, 13, to_date('10:01 08/09/2019' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (14, 14, to_date('10:01 03/04/2012' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (15, 15, to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (16, 16, to_date('10:01 03/04/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (17, 11, to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (18, 13, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (19, 10, to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR'));
+insert into Event (Event_ID, Address_ID, Event_Time_Date) values (20, 14, to_date('10:01 08/09/2012' , 'HH24:MI DD/MM/RRRR'));
+
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (1, 'Complete', 5, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (2, 'Processing', 4, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (3, 'Processing', 4, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (4, 'Complete', 5, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (5, 'NotStarted', 1, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (6, 'Processing', 3, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (7, 'Processing', 2, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (8, 'Processing', 3, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (9, 'Complete', 5, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (10, 'Processing', 4, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (11, 'Processing', 3, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (12, 'Processing', 2, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (13, 'NotStarted', 1, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (14, 'NotStarted', 1, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (15, 'Processing', 4, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (16, 'Complete', 5, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (17, 'Processing', 4, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (18, 'Processing', 3, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (19, 'NotStarted', 1, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (20, 'Processing', 4, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (21, 'NotStarted', 1, to_date('10:01 11/10/2019' , 'HH24:MI DD/MM/RRRR');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (22, 'Processing', 4, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'));
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (23, 'Processing', 3, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (24, 'Complete', 5, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (25, 'Complete', 5, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (26, 'Processing', 4, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (27, 'Processing', 4, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (28, 'NotStarted', 1, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (29, 'NotStarted', 1, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (30, 'Processing', 4, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (31, 'Processing', 4, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (32, 'Complete', 5, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (33, 'Complete', 5, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (34, 'Processing', 2, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (35, 'Processing', 3, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (36, 'Processing', 2, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (37, 'Processing', 4, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (38, 'Processing', 4, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'N');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (39, 'Processing', 4, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'Y');
+insert into Registration_Status (Reg_Status_ID, Registration_Status, Registration_Step, Last_Access_Date, Registration_Complete) values (40, 'Processing', 4, to_date('10:01 01/01/2020' , 'HH24:MI DD/MM/RRRR'), 'Y');
+
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (1, 1, 1, 'Other', 'Delegate', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (2, 2, 2, 'Phone', 'Delegate', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (3, 3, 3, 'Post', 'Delegate', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (4, 4, 4, 'Other', 'Delegate', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (5, 5, 5, 'Post', 'Delegate', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (6, 6, 6, 'Post', 'Delegate', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (7, 7, 7, 'Online', 'Delegate', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (8, 8, 8, 'Email', 'Delegate', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (9, 9, 9, 'Email', 'Delegate', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (10, 10, 10, 'Online', 'Delegate', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (11, 11, 11, 'Other', 'Delegate', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (12, 12, 12, 'Post', 'Delegate', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (13, 13, 13, 'Phone', 'Delegate', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (14, 14, 14, 'Phone', 'Delegate', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (15, 15, 15, 'Email', 'Delegate', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (16, 16, 16, 'Phone', 'Delegate', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (17, 17, 17, 'Email', 'Delegate', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (18, 18, 18, 'Other', 'Delegate', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (19, 19, 19, 'Other', 'Delegate', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (20, 20, 20, 'Online', 'Delegate', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (21, 1, 21, 'Other', 'Speaker', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (22, 2, 22, 'Phone', 'Speaker', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (23, 3, 23, 'Post', 'Speaker', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (24, 4, 24, 'Other', 'Speaker', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (25, 5, 25, 'Post', 'Speaker', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (26, 6, 26, 'Post', 'Speaker', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (27, 7, 27, 'Online', 'Speaker', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (28, 8, 28, 'Email', 'Speaker', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (29, 9, 29, 'Email', 'Speaker', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (30, 10, 30, 'Online', 'Speaker', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (31, 11, 31, 'Other', 'Speaker', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (32, 12, 32, 'Post', 'Speaker', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (33, 13, 33, 'Phone', 'Speaker', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (34, 14, 34, 'Phone', 'Speaker', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (35, 15, 35, 'Email', 'Speaker', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (36, 16, 36, 'Phone', 'Speaker', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (37, 17, 37, 'Email', 'Speaker', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (38, 18, 38, 'Other', 'Speaker', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (39, 19, 39, 'Other', 'Speaker', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (40, 20, 40, 'Online', 'Speaker', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (41, 1, 1, 'Other', 'Exhibitor', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (42, 2, 2, 'Phone', 'Exhibitor', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (43, 3, 3, 'Post', 'Exhibitor', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (44, 4, 4, 'Other', 'Exhibitor', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (45, 5, 5, 'Post', 'Exhibitor', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (46, 6, 6, 'Post', 'Exhibitor', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (47, 7, 7, 'Online', 'Exhibitor', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (48, 8, 8, 'Email', 'Exhibitor', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (49, 9, 9, 'Email', 'Exhibitor', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (50, 10, 10, 'Online', 'Exhibitor', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (51, 11, 11, 'Other', 'Exhibitor', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (52, 12, 12, 'Post', 'Exhibitor', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (53, 13, 13, 'Phone', 'Exhibitor', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (54, 14, 14, 'Phone', 'Exhibitor', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (55, 15, 15, 'Email', 'Exhibitor', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (56, 16, 16, 'Phone', 'Exhibitor', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (57, 17, 17, 'Email', 'Exhibitor', 'XYZOD');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (58, 18, 18, 'Other', 'Exhibitor', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (59, 19, 19, 'Other', 'Exhibitor', 'DOSUDJ');
+insert into Registration (Registration_ID, Event_ID, Reg_Status_ID, Registration_Method, Registration_Type, Registration_Social_Provider) values (60, 20, 20, 'Online', 'Exhibitor', 'XYZOD');
+
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (1, 12, 1, 'Corporate', '700.00');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (2, 12, 2, 'Conference', '300.00');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (3, 12, 3, 'Exhibition', '500.00');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (4, 21, 4, 'Exhibition', '2105.23');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (5, 5, 5, 'Corporate', '1710.12');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (6, 6, 6, 'Demonstration', '337.97');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (7, 7, 7, 'Demonstration', '1139.96');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (8, 8, 8, 'Conference', '7000.00');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (9, 8, 9, 'Exhibition', '7038.87');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (10, 10, 10, 'Corporate', '214.46');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (11, 11, 11, 'Demonstration', '422.28');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (12, 9, 12, 'Demonstration', '9940.36');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (13, 13, 13, 'Conference', '8605.83');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (14, 14, 14, 'Corporate', '8735.58');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (15, 15, 15, 'Demonstration', '2105.23');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (16, 16, 16, 'Seminar', '10215.55');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (17, 17, 17, 'Conference', '6000.10');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (18, 18, 18, 'Seminar', '14276.23');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (19, 19, 19, 'Demonstration', '8002.83');
+insert into Order_Line (Order_Line_ID, Customer_Order_ID, Event_ID, Event_Type, Unit_Cost) values (20, 20, 20, 'Corporate', '4182.74');
+
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (1, 1, 'Hermiston-Mills', 'Information regarding URL for streaming company info', 'N', 'SMT Kingdom', 'Aimbo',to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2017' , 'HH24:MI DD/MM/RRRR'), 'info', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (2, 2, 'Hilpert, Bradtke and Heaney', 'Information regarding URL for streaming company info', 'N', 'Odyssey', 'Divavu', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2017' , 'HH24:MI DD/MM/RRRR'), 'gov', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (3, 3, 'Wiegand, Mante and Yost', 'Information regarding URL for streaming company info', 'Y', 'Piano Education', 'Meembee', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'info', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (4, 4, 'Stoltenberg LLC', 'Information regarding URL for streaming company info', 'N', 'PL/SQL', 'Brightdog', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'name', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (5, 5, 'Lang Inc', 'Information regarding URL for streaming company info', 'N', 'UK Employment Law', 'Yodel', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'mil', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (6, 6, 'Walter LLC', 'Information regarding URL for streaming company info', 'Y', 'Mycology', 'Jabbertype', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'name', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (7, 7, 'Wiza-Mertz', 'Information regarding URL for streaming company info', 'N', 'AES', 'Camido', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2017' , 'HH24:MI DD/MM/RRRR'), 'net', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (8, 8, 'Lueilwitz, Mann and MacGyver', 'Information regarding URL for streaming company info', 'Y', 'Fashion Shows', 'Riffwire', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2017' , 'HH24:MI DD/MM/RRRR'), 'info', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (9, 9, 'Ward, Jenkins and Stanton', 'Information regarding URL for streaming company info', 'N', 'Biology', 'Zazio', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2017' , 'HH24:MI DD/MM/RRRR'), 'edu', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (10, 10, 'Romaguera-Padberg', 'Information regarding URL for streaming company info', 'Y', 'General Ledger', 'Linkbuzz', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2017' , 'HH24:MI DD/MM/RRRR'), 'info', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (11, 11, 'McKenzie, Herman and Rowe', 'Information regarding URL for streaming company info', 'N', 'CVE', 'Flipopia', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2017' , 'HH24:MI DD/MM/RRRR'), 'org', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (12, 12, 'Turcotte LLC', 'Information regarding URL for streaming company info', 'N', 'Utilities', 'Vipe', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'net', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (13, 13, 'Hauck and Sons', 'Information regarding URL for streaming company info', 'Y', 'RPM', 'Babbleset', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'gov', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (14, 14, 'Rolfson-Nader', 'Information regarding URL for streaming company info', 'Y', 'Consumer Behaviour', 'Livepath', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'name', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (15, 15, 'Windler, Simonis and Rempel', 'Information regarding URL for streaming company info', 'N', 'Overhaul', 'Jetwire', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2017' , 'HH24:MI DD/MM/RRRR'), 'com', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (16, 16, 'Glover and Sons', 'Information regarding URL for streaming company info', 'Y', 'Ethical Decision Making', 'Mynte', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2017' , 'HH24:MI DD/MM/RRRR'), 'name', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (17, 17, 'Willms Group', 'Information regarding URL for streaming company info', 'Y', 'HLA', 'Skipstorm', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'net', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (18, 18, 'Wunsch and Sons', 'Information regarding URL for streaming company info', 'Y', 'Literacy', 'Fivechat', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'mil', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (19, 19, 'Buckridge, Rippin and Thompson', 'Information regarding URL for streaming company info', 'N', 'Nursing', 'Mydeo', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2017' , 'HH24:MI DD/MM/RRRR'), 'edu', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (20, 20, 'Wolf, Conroy and Ernser', 'Information regarding URL for streaming company info', 'Y', 'KWI', 'Avavee', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'biz', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (21, 7, 'Emard, Gibson and Leuschke', 'Information regarding URL for streaming company info', 'Y', 'Thermal Oxidation', 'Agimba', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'info', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (22, 8, 'Prohaska-Graham', 'Information regarding URL for streaming company info', 'N', 'Business Aviation', 'Realbridge', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2017' , 'HH24:MI DD/MM/RRRR'), 'name', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (23, 8, 'West, Torphy and Hirthe', 'Information regarding URL for streaming company info', 'N', 'Two-way Radio', 'Jetwire', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/201' , 'HH24:MI DD/MM/RRRR'), 'name', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (24, 9, 'Bergstrom Inc', 'Information regarding URL for streaming company info', 'Y', 'Xara', 'Tazz', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'gov', 'Information concerning settings of Stream', 'Theme of stream');
+insert into Stream (Stream_ID, Event_ID, Name, Origin_URL, Secret, Audience, Provider, Created_at, Updated_at, Run_Scheduler, Settings, Theme) values (25, 9, 'Hansen Inc', 'Information regarding URL for streaming company info', 'N', 'Direct Sales', 'Skyvu', to_date('10:01 11/10/2015' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/12/2015' , 'HH24:MI DD/MM/RRRR'), 'info', 'Information concerning settings of Stream', 'Theme of stream');
+
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (1, 1, 1);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (2, 1, 2);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (3, 1, 3);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (4, 2, 9);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (5, 4, 5);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (6, 3, 5);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (7, 5, 7);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (8, 8, 8);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (9, 9, 9);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (10, 10, 10);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (11, 11, 11);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (12, 2, 12);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (13, 2, 13);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (14, 14, 14);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (15, 28, 11);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (16, 28, 32);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (17, 38, 31);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (18, 38, 40);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (19, 29, 21);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (20, 20, 19);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (21, 21, 21);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (22, 22, 22);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (23, 23, 23);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (24, 24, 24);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (25, 25, 25);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (26, 26, 26);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (27, 27, 27);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (28, 28, 28);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (29, 29, 29);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (30, 30, 30);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (31, 31, 31);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (32, 32, 31);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (33, 33, 31);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (34, 34, 31);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (35, 35, 31);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (36, 36, 31);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (37, 37, 37);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (38, 38, 38);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (39, 39, 39);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (40, 40, 40);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (41, 41, 41);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (42, 42, 42);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (43, 43, 43);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (44, 44, 44);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (45, 45, 45);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (46, 46, 46);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (47, 47, 47);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (48, 48, 48);
+insert into Contact_Address (Contact_Address_ID, Contact_Detail_ID, Address_ID) values (49, 49, 49);
+
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (1, 41, 41, 'Y', 'Kamba', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '11AA', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (2, 42, 42, 'Y', 'Wikizz', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '11AB', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (3, 43, 43, 'N', 'DabZ', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '11AC', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (4, 44, 44, 'N', 'Shuffletag', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '11AD', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (5, 45, 45, 'N', 'Avamba', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '12BD', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (6, 46, 46, 'Y', 'Jabbersphere', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '12BE', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (7, 47, 47, 'N', 'Bubbletube', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '12BF', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (8, 48, 48, 'N', 'Eadel', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '12BJ', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (9, 49, 49, 'Y', 'Ntags', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '12BP', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (10, 50, 50, 'N', 'Lajo', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '13BP', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (11, 51, 51, 'N', 'Tagchat', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '13ZC', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (12, 52, 52, 'Y', 'Twitterworks', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '13AD', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (13, 53, 53, 'Y', 'Cogidoo', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '13AO', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (14, 54, 54, 'N', 'Jabbercube', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '13AH', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (15, 55, 55, 'Y', 'Divanoodle', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '14AP', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (16, 56, 56, 'N', 'Flipstorm', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '14ZO', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (17, 57, 57, 'N', 'Blogspan', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '14ZP', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (18, 58, 58, 'N', 'Skinix', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '14ZD', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (19, 59, 59, 'N', 'Dabjam', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '13PF', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+insert into Exhibitor (Exhibitor_ID, Contact_Detail_ID, Registration_ID, Featured, Exhibiting_Name, Details, Settings, Stands, Created_at, Updated_at) values (20, 60, 60, 'N', 'Lazz', 'Information regarding exhibitor', 'Information regarding specialist requirements for exhibition', '13PD', to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR') , to_date('10:01 11/10/2017' , 'HH24:MI DD/MM/RRRR'));
+
+
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (1, 61, 21, 'Sales', 'Details about the speaker', 'BB12');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (2, 62, 22, 'Product Management', 'Details about the speaker', 'BB13');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (3, 63, 23, 'Product Management', 'Details about the speaker', 'AA13');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (4, 64, 24, 'Legal', 'Details about the speaker', 'AA15');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (5, 65, 25, 'Legal', 'Details about the speaker', 'AA18');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (6, 66, 26, 'Product Management', 'Details about the speaker', 'AA18');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (7, 67, 27, 'Accounting', 'Details about the speaker', 'AA19');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (8, 68, 28, 'Product Management', 'Details about the speaker', 'AA13');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (9, 69, 29, 'Training', 'Details about the speaker', 'AA19');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (10, 70, 30, 'Engineering', 'Details about the speaker', 'AA15');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (11, 71, 31, 'Human Resources', 'Details about the speaker', 'BB15');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (12, 72, 32, 'Sales', 'Details about the speaker', 'BB14');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (13, 73, 33, 'Marketing', 'Details about the speaker', 'AA11');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (14, 74, 34, 'Services', 'Details about the speaker', 'AA14');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (15, 75, 35, 'Legal', 'Details about the speaker', 'BB13');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (16, 76, 36, 'Support', 'Details about the speaker', 'AA16');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (18, 78, 38, 'Accounting', 'Details about the speaker', 'AA19');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (19, 79, 39, 'Legal', 'Details about the speaker', 'BB14');
+insert into Speaker (Speaker_ID, Contact_Detail_ID, Registration_ID, Topic, Details, Placement) values (20, 80, 40, 'R and D', 'Details about the speaker', 'BB16');
+
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (1, 41, 81, 'Y', 'Y', 'VIP');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (2, 42, 82, 'Y', 'Y', 'VIP');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (3, 43, 83, 'Y', 'Y', 'Extra');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (4, 44, 84, 'Y', 'Y', 'Standard');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (5, 45, 85, 'N', 'N', 'VIP');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (6, 46, 86, 'N', 'N', 'Extra');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (7, 47, 87, 'N', 'Y', 'VIP');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (8, 48, 88, 'N', 'Y', 'Standard');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (9, 49, 89, 'N', 'Y', 'Standard');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (10, 50, 90, 'Y', 'N', 'Extra');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (11, 51, 91, 'N', 'Y', 'VIP');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (12, 52, 92, 'Y', 'Y', 'VIP');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (13, 53, 93, 'N', 'N', 'Standard');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (14, 54, 94, 'Y', 'Y', 'Extra');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (15, 21, 95, 'N', 'Y', 'VIP');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (16, 56, 96, 'Y', 'N', 'Standard');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (17, 57, 97, 'N', 'Y', 'VIP');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (18, 58, 98, 'N', 'N', 'Standard');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (19, 59, 99, 'N', 'N', 'VIP');
+insert into Delegate (Delegate_ID, Registration_ID, Contact_Detail_ID, Terms_Accepted, Attended, Delegate_Status) values (20, 60, 100, 'Y', 'N', 'Extra');
+
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (1, 1, 1, 'Insert URL example that links to feedback', 4, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (2, 2, 1, 'Insert URL example that links to feedback', 3, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (3, 3, 1, 'Insert URL example that links to feedback', 3, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (4, 4, 1, 'Insert URL example that links to feedback', 3, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (5, 5, 1, 'Insert URL example that links to feedback', 5, 'Y');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (6, 6, 2, 'Insert URL example that links to feedback', 3, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (7, 7, 2, 'Insert URL example that links to feedback', 3, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (8, 8, 2, 'Insert URL example that links to feedback', 3, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (9, 9, 2, 'Insert URL example that links to feedback', 5, 'Y');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (10, 10, 2, 'Insert URL example that links to feedback', 1, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (11, 11, 3, 'Insert URL example that links to feedback', 2, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (12, 12, 3, 'Insert URL example that links to feedback', 2, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (13, 13, 3, 'Insert URL example that links to feedback', 1, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (14, 14, 4, 'Insert URL example that links to feedback', 5, 'Y');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (15, 15, 4, 'Insert URL example that links to feedback', 1, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (16, 16, 4, 'Insert URL example that links to feedback', 5, 'Y');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (17, 17, 5, 'Insert URL example that links to feedback', 1, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (18, 18, 5, 'Insert URL example that links to feedback', 4, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (19, 19, 5, 'Insert URL example that links to feedback', 3, 'N');
+insert into Feedback (Feedback_ID, Delegate_ID, Event_ID, Feedback_URL, Feedback_Step, Feedback_Complete) values (20, 20, 5, 'Insert URL example that links to feedback', 1, 'N');
+
+
+
+
+
+#HOW TO RESET DATABASE
+
+Alter table Feedback drop column Event_ID;
+Alter table Feedback drop column Delegate_ID;
+Alter table Delegate drop column Registration_ID;
+Alter table Delegate drop column Contact_Detail_ID;
+Alter table Speaker drop column Registration_ID;
+Alter table Speaker drop column Contact_Detail_ID;
+alter table Exhibitor drop column Registration_ID;
+Alter table Exhibitor drop column Contact_Detail_ID;
+Alter table Registration drop column Reg_Status_ID;
+Alter table Registration drop column Event_ID;
+Alter table Contact_Detail drop column ContactAddress_ID;
+Alter table Contact_Detail drop column Custom_Status_ID;
+Alter table Lead drop column Sales_Manager_ID;
+Alter table Lead drop column Contact_Detail_ID;
+Alter table Sales_Manager drop column Contact_Detail_ID;
+Alter Table Customer_Order drop column Sales_Manager_ID;
+Alter Table Customer_Order drop column Contact_Detail_ID;
+Alter table Order_Line drop column Customer_Order_ID;
+Alter table Order_Line drop column Event_ID;
+Alter table Event drop column Address_ID;
+Alter table Stream drop column Event_ID;
+Alter table Contact_Address drop column Contact_Detail_ID;
+Alter table Contact_Address drop column Address_ID;
+
+drop table Feedback;
+drop table Delegate;
+drop table Speaker;
+drop table Exhibitor;
+drop table Registration;
+drop table Contact_Detail;
+drop table Lead;
+drop table Sales_Manager;
+drop table Customer_Order;
+drop table Order_Line;
+drop table Event;
+drop table Stream;
+drop table Contact_Address;
+drop table Registration_Status;
+drop table Custom_Status;
+drop table Address;
+
+
+#complex query
+
+Select lead.lead_ID, lead.lead_status, contact_detail.contact_detail_ID, contact_detail.first_name, contact_detail.last_name, contact_detail.Primary_Mobile_Number
+From Lead
+INNER JOIN Contact_Detail ON Lead.Contact_Detail_ID=Contact_Detail.Contact_Detail_ID
+Where Contact_detail.Job_Title = 'Marketing Manager'
+;
+
+Select customer_order.customer_order_ID, contact_detail.contact_detail_ID, customer_order.total_order_value, contact_detail.company,  contact_detail.first_name, contact_detail.last_name, contact_detail.primary_mobile_number, contact_detail.primary_email
+From customer_order
+Inner Join contact_detail On customer_order.contact_detail_ID = contact_detail.contact_detail_ID
+Where customer_order.order_date < to_date('31/12/2012','DD/MM/YYYY') And customer_order.total_order_value > 6000
+Order by total_order_value desc
+;
+
+#nonclustered index
+CREATE INDEX orderD ON customer_order(order_date)
+
+#clustered index on a table 
+Create clustered index order_date on 
+
+#Unique index
+CREATE UNIQUE INDEX order ON Customer_Order (
